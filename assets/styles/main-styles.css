@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::after, *::before {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+.sidebar__menu_link_item {
+  @apply text-gray-400 w-full h-10 pl-4 mt-2 mb-3 flex items-center font-semibold rounded-lg cursor-pointer;
+  transition: all 300ms;
+}
+.sidebar__menu_link_item--hover {
+  @apply hover:bg-gray-100;
+  transition: all 300ms;
+}
+
+.navigations__tabs_item {
+  @apply text-gray-600 py-3 px-6 block focus:outline-none outline-none font-semibold text-sm border-b-2 border-opacity-0;
+  text-transform: capitalize;
+  transition: all 300ms;
+}
+.navigations__tabs_item:hover {
+  color: #0835C4;
+  transition: all 300ms;
+  border-bottom: 2px solid #0835C4;
+}
+
+.primary_text_color {
+  color: #0835C4;
+}
+.primary_bg_color {
+  background: #0835C4;
+}
+
