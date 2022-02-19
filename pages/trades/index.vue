@@ -23,7 +23,7 @@
       </div>
       <div class="trades__page__container_body w-full h-full">
         <transition mode="out-in" enter-active-class="animate_fadeIn" leave-active-class="animate_fadeOut">
-          <component :is="componentView"></component>
+          <component :trades="trades" :is="componentView"></component>
         </transition>
       </div>
     </div>
@@ -36,8 +36,22 @@ import tradeOffers from '@/components/Trades/trade-offers';
 export default {
   data() {
     return {
-      componentView: 'allTrades'
+      componentView: 'allTrades',
     }
+  },
+  asyncData(context) {
+    if (context.payload) {
+      return {
+        trades: context.payload
+      }
+    }
+    return context.app.$axios.$get('/trades')
+      .then(data => {
+        return {
+          trades: data
+        }
+      })
+      .catch(e => context.error(e))
   },
   components: {
     allTrades,

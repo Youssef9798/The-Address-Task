@@ -7,14 +7,14 @@
             </div>
 
             <div class="w-full flex p-8 flex-shrink-0">
-              <img class="w-12 h-12 rounded-full flex-shrink-0 mr-4 bg-gray-200 border object-cover" src="" alt="">
+              <img class="w-12 h-12 rounded-full flex-shrink-0 mr-4 bg-gray-200 border object-cover" :src="profile.profileImage" alt="">
               <div class="text-center space-y-2 sm:text-left">
                 <div class="space-y-0.5">
-                  <p class="text-xs text-gray-400 font-bold">
-                    Supplier
+                  <p class="text-xs text-gray-400 font-bold capitalize">
+                    {{ profile.role }}
                   </p>
-                  <p class="text-base text-gray-800 font-semibold">
-                    Laura Schellen
+                  <p class="text-base text-gray-800 font-semibold capitalize">
+                    {{ profile.name }}
                   </p>
                 </div>
               </div>
@@ -50,9 +50,14 @@
 export default {
   data() {
     return {
-      
+      profile: {}
     }
-  }
+  },
+  mounted(){
+    this.$store.$axios.$get('/profile').then(res => {
+      this.profile = res;
+    }).catch(err=> console.log(err));
+  },
 }
 </script>
 <style scoped>
