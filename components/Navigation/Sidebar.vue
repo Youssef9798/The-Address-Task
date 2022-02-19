@@ -1,11 +1,12 @@
 <template>
     <div class="w-1/4 md:w-1/4 lg:w-1/4 h-screen bg-white border-r flex z-30 flex-col" id="main-nav">
-
+        <!-- The Profile and logo data  "start"-->
           <div class="w-full h-auto flex flex-col px-0 mb-8 space-y-4">
+            <!-- Logo's Data placed here -->
             <div class="w-full pt-9 pl-6">
               <p class="font-semibold text-2xl text-blue-700"><span class="text-indigo-900">X</span>Trade</p>
             </div>
-
+            <!-- profile's Data displayed here -->
             <div class="w-full flex p-8 flex-shrink-0">
               <img class="w-12 h-12 rounded-full flex-shrink-0 mr-4 bg-gray-200 border object-cover" :src="profile.profileImage" alt="">
               <div class="text-center space-y-2 sm:text-left">
@@ -20,7 +21,8 @@
               </div>
             </div>
           </div>
-
+        <!-- The Profile and logo data "end" -->
+        <!--               The App Router's Links "Start"          -->
           <div class="mb-4 px-4"> 
             <ul>
               <li>
@@ -43,7 +45,7 @@
           <div class="mt-8 px-4">
             <nuxt-link to="/logout" class="sidebar__menu_link_item sidebar__menu_link_item--hover"><i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>Logout</nuxt-link>
           </div>
-
+        <!--               The App Router's Links "Start"          -->
     </div>
 </template>
 <script>

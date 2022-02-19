@@ -1,5 +1,10 @@
 import Vuex from 'vuex';
 
+/**
+ * This Store for fetch the profile data and the trades data
+ * 
+ */
+
 const createStore = () => {
   return new Vuex.Store({
     state: {

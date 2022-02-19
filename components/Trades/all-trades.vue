@@ -1,6 +1,11 @@
 <template>
+  <!--                      All Trades Component               -->
     <div class="bg-white h-full w-full">
+    <!--                  Tab header "Search bar and Buttons"          |Start -->  
       <div class="flex flex-row items-center justify-between flex-nowrap h-24 bg-gray-100 p-5 rounded-lg">
+        <!--                  Search Bar    |Start -->
+        <!--  I made the search bar filters the fetched data and return a new array of data that match the search  -->
+        <!-- NOTE: Please notice that Searching won't work as long as you don't select the search filters from filters popup -->
         <div class="w-2/3 flex-auto mr-4">
           <label class="relative block w-full">
             <span class="sr-only">Search</span>
@@ -10,8 +15,11 @@
             <input class="placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-12 pr-3 button--shadow-inner focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search for organizations, trading amounts..." type="text" name="search" v-model="searchValue"/>
           </label>
         </div>
+        <!--                  Search Bar    |End -->
+        <!--                  Buttons       |Start -->
         <div class="w-1/3 flex flex-nowrap flex-row items-center">
           <div>
+            <!-- NOTE: Please notice that the filters button opens the filters popup box modal which contains the seacrhing filters and the shown and hidden columns and the entries show per page -->
             <button class="py-2 px-4 button--shadow-inner text-sm capitalize font-semibold bg-white rounded-md text-blue-500 hover:bg-blue-500 hover:text-white transition-all whitespace-nowrap" @click="filtersVisible = !filtersVisible">
               <i class="fa-solid fa-filter"></i>
               Filters
@@ -35,10 +43,16 @@
             </div>
           </div>
         </div>
-      </div>  
+        <!--                  Buttons       |Start -->
+      </div>
+    <!--                  Tab header "Search bar and Buttons"          |End -->  
+    <!--                  Datatable Component Placed here          |Start --> 
       <div class="w-full overflow-x-auto mb-16">
+        <!-- NOTE: Please notice that datatable copmponent accetps some props such as the columns data and the filtered entries which is return the entire data of the entires as long as the select search is empty and the column index sent from the filters component to hide and show columns  -->
         <DataTable :columns="columns" :entries="filteredEntries" :colIdx="colIdx"/>
       </div>
+    <!--                  Datatable Component                       |End --> 
+    <!--                  Table pagination                       |Start --> 
       <div class="flex flex-row justify-between items-center p-5 bg-gray-100 rounded-lg mb-10">
         <div class="w-3/5 text-xs text-gray-500 font-semibold">
           <p>1-<span>{{ currentEntries }}</span> of {{ entries.length }}</p>
@@ -62,9 +76,23 @@
           </div>
         </div>
       </div>
+    <!--                  Table pagination                       |Start -->
+    <!--        Filters Popup Box Modal Component                       |Start -->
+      <!-- NOTE: Please notice that the filters component accepts props and emits events to the parent component -->
+        <!-- showEntries : this responsible for passing the pagination entires show per page types -->
+        <!-- entries : this responsible for passing the entires of the datatable -->
+        <!-- currentEntires : this responsible for passing the current entires of the datatable shown per page -->
+        <!-- columns : this responsible for passing the datatable columns array -->
+        <!-- filtersVisible : this responsible show and hide the filters popup -->
+
+        <!-- @changeEntries : this event return the changing of the entries shown per page -->
+        <!-- @closeFilters : this event close the filters popup -->
+        <!-- @changeSearch : this event return the selected search category by column to the search bar -->
+        <!-- @getColidx : this event return the index of the column to from the selected column to be shown or hide and passing it to the datatable through function to hide the related column from the datatable component -->
       <Filters :showEntries="showEntries" :entries="entries" :currentEntries="currentEntries" @changeEntries="changingEntries($event)" :columns="columns" @closeFilters="closeFilterModal($event)" :filtersVisible="filtersVisible" @changeSearch="changingSearch($event)" @getColIdx="getColumnIndex"/>
-      
+    <!--        Filters Popup Box Modal Component                       |End -->
     </div>
+  <!--                      All Trades Component               -->
 </template>
 
 <script>

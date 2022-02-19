@@ -1,15 +1,20 @@
 <template>
   <div class="bg-white">
+    <!--                      Trades Index page                     -->
     <div class="trades__page__container flex flex-col w-full h-full">
+      <!--                      Page Header                      -->
       <div class="trades__page__container_header w-full h-1/4 flex flex-col">
         <div class="trades__page__container_header_top w-full flex flex-row items-center">
+          <!--                      Page Title                      -->
           <div class="page__title w-1/2">
             <h1 class="text-2xl font-semibold text-gray-700">Trades</h1>
           </div>
+          <!--                      Page Title                      -->
           <div class="trades__page__container_btn w-1/2 text-right">
             <button class="primary_bg_color text-white rounded-lg p-2 px-5 text-sm font-bold hover:bg-blue-600 transition-all">Create a new trade</button>
           </div>
         </div>
+          <!--                      Trades pages taps               -->
         <div class="trades__page__container_header_bottom border-b-2 mt-4">
           <nav class="flex flex-col sm:flex-row">
             <button class="navigations__tabs_item" :class="componentView === 'allTrades' ? 'active-tab' : ''" @click="componentView='allTrades'">
@@ -20,11 +25,15 @@
             </button>
           </nav>
         </div>
+        <!--                      Trades pages taps               -->
       </div>
+      <!--                      Page Header                      -->
       <div class="trades__page__container_body w-full h-full">
+        <!--                      Trades pages Content Shown herer               -->
         <transition mode="out-in" enter-active-class="animate_fadeIn" leave-active-class="animate_fadeOut">
           <component :trades="trades" :is="componentView"></component>
         </transition>
+        <!--                      Trades pages Content Shown herer               -->
       </div>
     </div>
   </div>

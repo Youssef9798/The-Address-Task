@@ -1,10 +1,14 @@
 <template>
   <div class="flex min-h-screen w-full bg-primary-50">
+    <!--                 The Sidebar  Component                   -->
     <Sidebar/>
+    <!--                 The Sidebar  Component                   -->
     <div class="w-3/4">
+    <!--                 The App Core Component     "router views"              -->
       <transition mode="out-in" enter-active-class="animate_fadeIn" leave-active-class="animate_fadeOut">
         <Nuxt class="flex-auto h-screen overflow-y-auto p-6"/>
       </transition>
+    <!--                 The App Core Component     "router views"              -->
     </div>
   </div>
 </template>
@@ -17,6 +21,11 @@ export default {
 }
 </script>
 <style scoped>
+
+/*
+ * .animate_fadeIn this class for transition In the router views of the app
+ * .animate_fadeOut this class for transition Out the router view of the app
+ */
 .animate_fadeIn {
   opacity: 0;
   animation: fadeIn 1s linear;
