@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-5">
+  <div class="pt-3">
     <table class="table table-auto w-full pt-10 bg-white" ref="table">
       <thead>
         <tr class="w-full">
@@ -31,14 +31,21 @@
           :key="`${i}-td`"
           class="group hover:bg-gray-100 cursor-pointer rounded-lg transition-all"
         >
-          <td class="border-b px-3 py-6 w-28 overflow-ellipsis whitespace-nowrap overflow-hidden" v-show="columnShow">
-            <div class="w-full flex justify-start items-center flex-row flex-wrap overflow-ellipsis whitespace-nowrap overflow-hidden">
-              <span class="w-52 font-semibold text-gray-800 capitalize whitespace-nowrap overflow-ellipsis overflow-hidden">{{
-                td.tradeHandler.name
-              }}</span>
-              <span class="w-52 text-sm text-gray-500 overflow-ellipsis whitespace-nowrap overflow-hidden">{{
-                td.tradeHandler.email
-              }}</span>
+          <td
+            class="border-b px-3 py-6 w-28 overflow-ellipsis whitespace-nowrap overflow-hidden"
+            v-show="columnShow"
+          >
+            <div
+              class="w-full flex justify-start items-center flex-row flex-wrap overflow-ellipsis whitespace-nowrap overflow-hidden"
+            >
+              <span
+                class="w-52 font-semibold text-gray-800 capitalize whitespace-nowrap overflow-ellipsis overflow-hidden"
+                >{{ td.tradeHandler.name }}</span
+              >
+              <span
+                class="w-52 text-sm text-gray-500 overflow-ellipsis whitespace-nowrap overflow-hidden"
+                >{{ td.tradeHandler.email }}</span
+              >
             </div>
           </td>
           <td class="border-b px-3 py-4 text-center" v-show="columnShow">
@@ -101,7 +108,9 @@
                   td.status === 'declined',
               }"
             >
-              <span class="whitespace-nowrap uppercase font-bold">{{ td.status }}</span>
+              <span class="whitespace-nowrap uppercase font-bold">{{
+                td.status
+              }}</span>
             </div>
           </td>
           <td
@@ -159,7 +168,6 @@ export default {
     tableHeader() {
       let passed = [];
       for (let col in this.columns) {
-        
         if (this.columns[col].show) {
           passed.push(this.columns[col]);
         }
