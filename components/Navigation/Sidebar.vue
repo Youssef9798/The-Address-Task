@@ -1,14 +1,18 @@
 <template>
-    <div class="w-1/4 md:w-1/4 lg:w-1/4 h-screen bg-white border-r flex z-30 flex-col" id="main-nav">
+    <div class="w-1/5 md:w-1/5 lg:w-1/5 h-screen bg-white border-r flex z-30 flex-col relative" id="main-nav">
         <!-- The Profile and logo data  "start"-->
-          <div class="w-full h-auto flex flex-col px-0 mb-8 space-y-4">
+          <div class="w-full h-auto flex flex-col px-0 mb-6 space-y-4">
             <!-- Logo's Data placed here -->
-            <div class="w-full pt-9 pl-6">
-              <p class="font-semibold text-2xl text-blue-700"><span class="text-indigo-900">X</span>Trade</p>
+            <div class="w-full pt-9 pl-6 flex flex-row flex-nowrap items-center">
+              <img src="~/static/xlogo-300x300.png" class="w-6 h-6 rounded-md mr-3">
+              <p class="font-normal text-2xl primary_text_color"><span class="font-bold">X</span>Trade</p>
             </div>
             <!-- profile's Data displayed here -->
             <div class="w-full flex p-8 flex-shrink-0">
-              <img class="w-12 h-12 rounded-full flex-shrink-0 mr-4 bg-gray-200 border object-cover" :src="profile.profileImage" alt="">
+              <img v-if="profile.profileImage" class="w-10 h-10 rounded-full flex-shrink-0 mr-4 bg-gray-200 object-cover border border-gray-100" :src="profile.profileImage" alt="">
+              <div v-else class="w-10 h-10 flex rounded-full flex-shrink-0 mr-4 bg-gray-200 object-cover border border-gray-100 uppercase items-center justify-center font-semibold text-sm">
+                <span class="primary_text_color">{{ initials }}</span>
+              </div>
               <div class="text-center space-y-2 sm:text-left">
                 <div class="space-y-0.5">
                   <p class="text-xs text-gray-400 font-bold capitalize">
@@ -29,20 +33,20 @@
                 <nuxt-link to="/" class="sidebar__menu_link_item sidebar__menu_link_item--hover" exact><i class="fas fa-home-lg mr-2"></i>Dashboard</nuxt-link>
               </li>
               <li>
-                <nuxt-link to="/trades" class="sidebar__menu_link_item sidebar__menu_link_item--hover"><i class="fa-solid fa-arrow-right-arrow-left mr-2"></i>Trades</nuxt-link>
+                <nuxt-link to="/trades" class="sidebar__menu_link_item sidebar__menu_link_item--hover"><i class="fa-solid fa-arrows-rotate mr-2"></i>Trades</nuxt-link>
               </li>
               <li>
-                <nuxt-link to="/organizations" class="sidebar__menu_link_item sidebar__menu_link_item--hover"><i class="fa-solid fa-sitemap mr-2"></i>Organizations</nuxt-link>
+                <nuxt-link to="/organizations" class="sidebar__menu_link_item sidebar__menu_link_item--hover"><i class="fa-solid fa-users mr-2"></i>Organizations</nuxt-link>
               </li>
               <li>
                 <nuxt-link to="/users" class="sidebar__menu_link_item sidebar__menu_link_item--hover"><i class="fa-solid fa-user mr-2"></i>Users</nuxt-link>
               </li>
               <li>
-                <nuxt-link to="/settings" class="font-semibold w-full flex items-center text-gray-400 h-10 pl-4 hover:bg-gray-100 rounded-lg cursor-pointer mt-2 mb-2"><i class="fa-solid fa-sliders mr-2"></i>System Settings</nuxt-link>
+                <nuxt-link to="/settings" class="sidebar__menu_link_item sidebar__menu_link_item--hover"><i class="fa-solid fa-sliders mr-2"></i>System Settings</nuxt-link>
               </li>
             </ul>
           </div>
-          <div class="mt-8 px-4">
+          <div class="w-full mt-8 px-4 absolute bottom-0">
             <nuxt-link to="/logout" class="sidebar__menu_link_item sidebar__menu_link_item--hover"><i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>Logout</nuxt-link>
           </div>
         <!--               The App Router's Links "Start"          -->
@@ -52,21 +56,36 @@
 export default {
   data() {
     return {
-      profile: {}
+      profile: {},
+      initials: ''
     }
   },
-  mounted(){
+  created(){
     this.$store.$axios.$get('/profile').then(res => {
       this.profile = res;
-    }).catch(err=> console.log(err));
+      this.profilePicName();
+    })
+    .catch(err=> console.log(err));
   },
+  methods: {
+    profilePicName(){
+      if(this.profile){
+        if(this.profile.profileImage === "" || this.profile.profileImage === null || this.profile.profileImage === undefined){
+          for(let i = 0; i < this.profile.name.split(' ').length; i++){
+            this.initials += this.profile.name.split(' ')[i].charAt(0)
+          }
+        }
+
+      }
+    }
+  }
 }
 </script>
 <style scoped>
   a.nuxt-link-exact-active, a.nuxt-link-active{
     @apply bg-gray-100;
     /* color: #283754; */
-    color: #0835C4;
+    color: #003171;
     transition: all 300ms;
   }
 </style>

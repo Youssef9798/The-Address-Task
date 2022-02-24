@@ -2,31 +2,31 @@
   <!--                      All Trades Component               -->
     <div class="bg-white h-full w-full">
     <!--                  Tab header "Search bar and Buttons"          |Start -->  
-      <div class="flex flex-row items-center justify-between flex-nowrap h-24 bg-gray-100 p-5 rounded-lg">
+      <div class="flex flex-row items-center justify-between flex-nowrap h-auto bg-gray-100 px-5 py-4 rounded-lg">
         <!--                  Search Bar    |Start -->
         <!--  I made the search bar filters the fetched data and return a new array of data that match the search  -->
         <!-- NOTE: Please notice that Searching won't work as long as you don't select the search filters from filters popup -->
-        <div class="w-2/3 flex-auto mr-4">
+        <div class="w-4/5 flex-auto mr-4">
           <label class="relative block w-full">
             <span class="sr-only">Search</span>
-            <span class="absolute inset-y-0 left-0 flex items-center px-4 text-blue-500">
+            <span class="absolute inset-y-0 left-0 flex items-center px-4 primary_text_color">
               <i class="fa-solid fa-magnifying-glass"></i>
             </span>
-            <input class="placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-12 pr-3 button--shadow-inner focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search for organizations, trading amounts..." type="text" name="search" v-model="searchValue"/>
+            <input class="placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-12 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search for organizations, trading amounts..." type="text" name="search" v-model="searchValue"/>
           </label>
         </div>
         <!--                  Search Bar    |End -->
         <!--                  Buttons       |Start -->
-        <div class="w-1/3 flex flex-nowrap flex-row items-center">
+        <div class="w-1/5 flex flex-nowrap flex-row items-center">
           <div>
             <!-- NOTE: Please notice that the filters button opens the filters popup box modal which contains the seacrhing filters and the shown and hidden columns and the entries show per page -->
-            <button class="py-2 px-4 button--shadow-inner text-sm capitalize font-semibold bg-white rounded-md text-blue-500 hover:bg-blue-500 hover:text-white transition-all whitespace-nowrap" @click="filtersVisible = !filtersVisible">
+            <button class="primary_btn py-2 px-4 button--shadow-inner text-sm capitalize font-normal bg-white rounded-md primary_text_color hover:text-white transition-all whitespace-nowrap border border-slate-300 shadow-sm outline-none focus:outline-none" @click="filtersVisible = !filtersVisible">
               <i class="fa-solid fa-filter"></i>
               Filters
             </button>
           </div>
           <div class="mx-6 relative">
-            <button class="relative z-20 py-2 px-4 button--shadow-inner text-sm drop-shadow capitalize font-semibold bg-white rounded-md whitespace-nowrap hover:bg-blue-500 hover:text-white transition-all text-blue-500" @click="menuVisible= !menuVisible" type="button" :class="{'active_btn': menuVisible}">
+            <button class="primary_btn relative z-20 py-2 px-4 button--shadow-inner text-sm drop-shadow capitalize font-normal border border-slate-300 bg-white rounded-md whitespace-nowrap primary_text_color hover:text-white transition-all shadow-sm outline-none focus:outline-none" @click="menuVisible= !menuVisible" type="button" :class="{'active_btn': menuVisible}">
               <i class="fa-solid fa-circle-arrow-down"></i>
               export
             </button>
@@ -34,10 +34,10 @@
             <div v-if="menuVisible" class="absolute w-auto mt-3 whitespace-nowrap right-0 z-40 text-xs list-none bg-white rounded divide-y divide-gray-100 shadow">
               <ul class="p-2 text-xs capitalize">
                 <li>
-                  <a href="#" class="block py-2 px-4 text-xs text-gray-700 hover:bg-gray-100">export as .csv</a>
+                  <a href="#" class="block py-2 px-4 text-xs rounded-md text-gray-700 hover:bg-gray-100">export as .csv</a>
                 </li>
                 <li>
-                  <a href="#" class="block py-2 px-4 text-xs text-gray-700 hover:bg-gray-100">export as .xslx</a>
+                  <a href="#" class="block py-2 px-4 text-xs rounded-md text-gray-700 hover:bg-gray-100">export as .xslx</a>
                 </li>
               </ul>
             </div>
@@ -53,24 +53,24 @@
       </div>
     <!--                  Datatable Component                       |End --> 
     <!--                  Table pagination                       |Start --> 
-      <div class="flex flex-row justify-between items-center p-5 bg-gray-100 rounded-lg mb-10">
-        <div class="w-3/5 text-xs text-gray-500 font-semibold">
+      <div class="flex flex-row justify-end items-center p-5 bg-gray-100 rounded-lg mb-10">
+        <div class="w-4/6 text-xs text-gray-500 font-semibold">
           <p>1-<span>{{ currentEntries }}</span> of {{ entries.length }}</p>
         </div>
-        <div class="w-2/5 flex flex-nowrap flex-row items-center justify-between">
-          <div class="flex-auto flex flex-nowrap items-center px-2 border-r-2 border-gray-300 mr-3">
+        <div class="w-2/6 flex flex-nowrap flex-row items-center justify-end text-right">
+          <div class="flex-auto flex flex-nowrap items-center px-2 border-r-2 border-gray-300 mr-4">
             <label for="current_page" class="font-semibold whitespace-nowrap text-xs text-gray-500 pr-3">The page you're on</label>
             <div class="flex justify-center relative">
-              <select class="form-select block w-auto px-1 py-1 text-xs font-normal text-blue-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-blue-700 focus:bg-white focus:outline-none cursor-pointer" id="current_page" v-model="currentPage">
+              <select class="form-select block w-auto px-1 py-1 text-xs font-normal primary_text_color bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-blue-700 focus:bg-white focus:outline-none cursor-pointer" id="current_page" v-model="currentPage">
                 <option v-for="n in totalPages" :key="n" :value="n">{{ n }}</option>
               </select>
             </div>
           </div>
-          <div class="flex-auto flex flex-nowrap items-center px-2 text-xs">
-            <button class="px-2 py-1 bg-white rounded-lg border border-gray-300 text-blue-700 mr-2 hover:bg-blue-700 hover:text-white" :class="{'disabled_btn': isInFirstPage}" :disabled="isInFirstPage" @click="onPrevPage">
+          <div class="flex-auto flex flex-nowrap items-center ml-4 px-2 text-xs">
+            <button class="px-2 py-1 bg-white rounded-lg border border-gray-300 primary_text_color mr-2 primary_btn hover:text-white" :class="{'disabled_btn': isInFirstPage}" :disabled="isInFirstPage" @click="onPrevPage">
               <i class="fa-solid fa-arrow-left"></i>
             </button>
-            <button class="px-2 py-1 bg-white rounded-lg border border-gray-300 text-blue-700 hover:bg-blue-700 hover:text-white" :class="{'disabled_btn': isInLastPage}"  :disabled="isInLastPage" @click="onNextPage">
+            <button class="px-2 py-1 bg-white rounded-lg border border-gray-300 primary_text_color primary_btn hover:text-white" :class="{'disabled_btn': isInLastPage}"  :disabled="isInLastPage" @click="onNextPage">
               <i class="fa-solid fa-arrow-right"></i>
             </button>
           </div>
@@ -207,10 +207,15 @@ export default {
 
 <style scoped>
   .button--shadow-inner {
-    box-shadow: inset 2px 2px 4px 0px rgba(0, 0, 0, 0.2);
+    /* box-shadow: inset 2px 2px 4px 0px rgba(0, 0, 0, 0.2); */
+  }
+  .primary_btn:hover {
+    background: #003171;
+    color: #ffffff;
   }
   .active_btn {
-    @apply bg-blue-500 text-white;
+    @apply text-white;
+    background: #003171;
   }
   .disabled_btn {
     @apply text-gray-500 opacity-50 cursor-not-allowed hover:bg-white;

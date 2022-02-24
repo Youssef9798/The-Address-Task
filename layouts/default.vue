@@ -1,9 +1,9 @@
 <template>
-  <div class="flex min-h-screen w-full bg-primary-50">
+  <div class="flex min-h-screen w-screen bg-primary-50">
     <!--                 The Sidebar  Component                   -->
     <Sidebar/>
     <!--                 The Sidebar  Component                   -->
-    <div class="w-3/4">
+    <div class="w-4/5">
     <!--                 The App Core Component     "router views"              -->
       <transition mode="out-in" enter-active-class="animate_fadeIn" leave-active-class="animate_fadeOut">
         <Nuxt class="flex-auto h-screen overflow-y-auto p-6"/>

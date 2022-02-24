@@ -1,17 +1,17 @@
 <template>
-  <div>
+  <div class="pt-5">
     <table class="table table-auto w-full pt-10 bg-white" ref="table">
       <thead>
         <tr class="w-full">
           <th
-            class="bg-white border-b text-left px-3 py-5 whitespace-nowrap"
+            class="bg-white border-b text-left px-3 py-5 whitespace-nowrap text-sm text-gray-500"
             v-for="(th, i) in tableHeader"
             :key="`${i}-th`"
             :data-column="th.name"
             data-order="desc"
           >
             <div
-              class="flex justify-center items-center font-semibold text-sm primary_text_color flex-row"
+              class="table_header_name flex justify-center items-center font-semibold text-xs flex-row text-gray-500"
             >
               <span class="mr-2 capitalize">{{ th.text }}</span>
               <span
@@ -31,12 +31,12 @@
           :key="`${i}-td`"
           class="group hover:bg-gray-100 cursor-pointer rounded-lg transition-all"
         >
-          <td class="border-b px-3 py-4" v-show="columnShow">
-            <div class="flex justify-start items-center flex-row flex-wrap">
-              <span class="w-full font-semibold text-gray-800 capitalize">{{
+          <td class="border-b px-3 py-6 w-28 overflow-ellipsis whitespace-nowrap overflow-hidden" v-show="columnShow">
+            <div class="w-full flex justify-start items-center flex-row flex-wrap overflow-ellipsis whitespace-nowrap overflow-hidden">
+              <span class="w-52 font-semibold text-gray-800 capitalize whitespace-nowrap overflow-ellipsis overflow-hidden">{{
                 td.tradeHandler.name
               }}</span>
-              <span class="w-full text-sm text-gray-500">{{
+              <span class="w-52 text-sm text-gray-500 overflow-ellipsis whitespace-nowrap overflow-hidden">{{
                 td.tradeHandler.email
               }}</span>
             </div>
@@ -91,24 +91,24 @@
             <div
               class="flex items-center justify-center px-2 py-1 rounded-full transition-all"
               :class="{
-                'bg-green-100 text-green-900 group-hover:text-green-100 group-hover:bg-green-500':
+                'bg-green-100 text-green-500 group-hover:text-green-100 group-hover:bg-green-500':
                   td.status === 'active',
                 'bg-yellow-100 text-yellow-500 group-hover:text-yellow-100 group-hover:bg-yellow-400':
                   td.status === 'pending',
-                'bg-blue-100 text-blue-500 group-hover:text-blue-100 group-hover:bg-blue-500':
+                'bg-blue-100 text-blue-900 group-hover:text-blue-100 group-hover:bg-blue-900':
                   td.status === 'closed',
                 'bg-red-100 text-red-500 group-hover:bg-red-500 group-hover:text-red-100':
                   td.status === 'declined',
               }"
             >
-              <span class="whitespace-nowrap">{{ td.status }}</span>
+              <span class="whitespace-nowrap uppercase font-bold">{{ td.status }}</span>
             </div>
           </td>
           <td
             class="border-b px-3 py-4 text-sm text-gray-800"
             v-show="columnShow"
           >
-            <div class="whitespace-nowrap capitalize group-hover:text-blue-800">
+            <div class="whitespace-nowrap capitalize">
               <span
                 :class="{
                   'text-gray-400 text-xs':
@@ -121,7 +121,7 @@
                 }}</span
               >
               <span
-                class="ml-2 text-sm opacity-0 transition-all group-hover:opacity-100"
+                class="ml-2 text-sm opacity-0 transition-all group-hover:opacity-100 group-hover:text-blue-800"
                 ><i class="fa-solid fa-chevron-right"></i
               ></span>
             </div>
